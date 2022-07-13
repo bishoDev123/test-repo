@@ -13,9 +13,14 @@ public class PlayerMovement : MonoBehaviour
 
     private float direction;
 
+    public bool touchingGround;
+
+    public Collider2D groundColl;
+
     // Start is called before the first frame update
     void Start()
     {
+        touchingGround = false;
         //assign the rigid body component in the object in unity to the variable rb
         rb = GetComponent<Rigidbody2D>();
     }
@@ -30,9 +35,26 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(playerSpeed * direction, rb.velocity.y);
 
         //Moves player vertically. In other words, a jump
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && touchingGround)
         {
             rb.velocity = Vector2.up * jumpForce;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.collider == groundColl)
+        {
+            touchingGround = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if(collision.collider == groundColl)
+        {
+            touchingGround = false;
+        }
+    }
+
 }
