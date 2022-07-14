@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = new Vector2(playerSpeed * direction, rb.velocity.y);
 
         //Moves player vertically. In other words, a jump
-        if (Input.GetButtonDown("Jump") && touchingGround)
+        if (Input.GetKeyDown(KeyCode.Space) && touchingGround)
         {
             rb.velocity = Vector2.up * jumpForce;
         }
