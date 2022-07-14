@@ -355,6 +355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 7
   jumpForce: 7
+  touchingGround: 0
+  groundColl: {fileID: 1326436873}
 --- !u!1 &1326436870
 GameObject:
   m_ObjectHideFlags: 0
